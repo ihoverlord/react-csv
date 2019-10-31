@@ -49,13 +49,17 @@ export const getHeaderValue = (property, obj) => {
 
 export const elementOrEmpty = (element) => element || element === 0 ? element : '';
 
+const encloser = (key, char) => {
+  console.log(`${char}${key}${char}`)
+  return `${char}${key}${char}`
+}
 export const joiner = ((data, separator = ',', enclosingCharacter = '"') => {
   return data
     .filter(e => e)
     .map(
       row => row
         .map((element) => elementOrEmpty(element))
-        .map(column => `${enclosingCharacter}${column}${enclosingCharacter}`)
+        .map(x => encloser(x, enclosingCharacter))
         .join(separator)
     )
     .join(`\n`);
